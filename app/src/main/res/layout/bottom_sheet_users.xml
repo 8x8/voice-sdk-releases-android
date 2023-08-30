@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context="com.wavecell.sample.app.presentation.view.activity.ActivityMain">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="viewModel"
+            type="com.wavecell.sample.app.presentation.model.AccountsBottomSheetViewModel" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/bottom_sheet_incoming_call_background"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="16dp"
+            android:text="@string/account_details"
+            android:textColor="@color/md_black_1000"
+            android:textStyle="bold"
+            android:textSize="18sp"
+            android:layout_marginBottom="12dp" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:hint="@string/account_id_info"
+            android:paddingStart="12dp"
+            android:paddingEnd="12dp">
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/account_id_et"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:imeOptions="actionNext"
+                android:nextFocusForward="@id/register_user_id_et"
+                android:singleLine="true"
+                android:text="@={viewModel.accountId}"
+                android:textSize="22sp"
+                android:textColor="@color/md_black_1000"
+                android:textColorHint="@color/md_white_1000_20"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:paddingStart="12dp"
+            android:paddingEnd="12dp"
+            android:hint="@string/service_url">
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/service_url_et"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:imeOptions="actionNext"
+                android:nextFocusForward="@id/register_user_id_et"
+                android:singleLine="true"
+                android:text="@={viewModel.serviceUrl}"
+                android:textSize="22sp"
+                android:textColor="@color/md_black_1000"
+                android:textColorHint="@color/md_white_1000_20"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingStart="12dp"
+            android:paddingEnd="12dp"
+            android:layout_marginTop="16dp"
+            android:hint="@string/token_url">
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/token_url_et"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:imeOptions="actionNext"
+                android:nextFocusForward="@id/register_user_id_et"
+                android:singleLine="true"
+                android:text="@={viewModel.tokenUrl}"
+                android:textSize="22sp"
+                android:textColor="@color/md_black_1000"
+                android:textColorHint="@color/md_white_1000_20"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+            android:id="@+id/add_fab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingStart="15dp"
+            android:paddingEnd="15dp"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:layout_marginTop="28dp"
+            android:layout_gravity="center_horizontal"
+            android:text="@string/apply"
+            android:onClick="@{()->viewModel.onAddAccountInfo()}"
+            android:textColor="@color/colorPrimary"
+            android:gravity="center"
+            app:rippleColor="@color/colorPrimaryLight"
+            app:backgroundTint="@color/dodger_blue"
+            style="@style/Widget.MaterialComponents.Button.UnelevatedButton"/>
+
+    </LinearLayout>
+
+</layout>

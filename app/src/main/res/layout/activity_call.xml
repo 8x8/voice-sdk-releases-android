@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.wavecell.sample.app.presentation.view.activity.ActivityCall">
+    <data>
+        <import type="android.view.View" />
+
+        <import type="com.wavecell.sample.app.presentation.callback.ActiveCallClickOption"/>
+
+        <variable
+            name="viewModel"
+            type="com.wavecell.sample.app.presentation.model.ActivityCallViewModel" />
+    </data>
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorPrimaryDarker">
+
+        <ImageView
+            android:layout_width="@dimen/logo_size"
+            android:layout_height="@dimen/logo_size"
+            android:layout_marginTop="82dp"
+            android:layout_marginStart="34dp"
+            android:src="@drawable/logo"
+            tools:ignore="ContentDescription" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:paddingEnd="34dp"
+            android:paddingStart="34dp"
+            android:paddingTop="34dp"
+            android:orientation="vertical"
+            android:background="@drawable/bottom_sheet_call_background">
+
+            <com.wavecell.sample.app.custom.cards.CallIncomingCard
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="34dp"
+                app:shouldDisplayIncoming="@{viewModel.incomingCall}"/>
+
+            <com.wavecell.sample.app.custom.cards.CallOnHoldCard
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                app:shouldDisplayOnHold="@{viewModel.onHoldCall}"
+                app:viewModel="@{viewModel}"/>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/call_name_tv"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="78dp"
+                    android:gravity="center_horizontal"
+                    android:text="@{viewModel.peerName}"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/md_white_1000"/>
+
+                <ImageView
+                    android:id="@+id/call_avatar_iv"
+                    android:layout_width="114dp"
+                    android:layout_height="114dp"
+                    android:padding="15dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_gravity="center_horizontal"
+                    android:src="@drawable/avatar_batman"
+                    android:background="@drawable/circle_avatar_call"
+                    app:avatar="@{viewModel.avatarUrl}"
+                    tools:ignore="ContentDescription" />
+
+                <TextView
+                    android:id="@+id/call_status_tv"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:gravity="center_horizontal"
+                    android:text="@string/call_connected"
+                    android:textSize="14sp"
+                    android:textColor="@color/md_white_1000"/>
+
+                <Chronometer
+                    android:id="@+id/call_chronometer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:gravity="center_horizontal"
+                    android:textSize="14sp"
+                    android:textColor="@color/md_white_1000"
+                    app:chrono="@{viewModel.startTime}"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:layout_gravity="center_horizontal|bottom"
+                android:orientation="horizontal">
+
+                <com.wavecell.sample.app.custom.views.CallButtonView
+                    android:id="@+id/call_mute_cbv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="20dp"
+                    app:button_key="@string/tag_mute"
+                    app:onMute="@{viewModel.isMuted()}"
+                    app:onActiveCallButtonClick="@{viewModel}"
+                    app:activeCallClickOption="@{ActiveCallClickOption.MUTE}"
+                    app:button_title="Mute"
+                    app:button_icon="@drawable/call_mic_on"
+                    app:button_icon_color="@color/md_white_1000"
+                    app:button_text_color="@color/md_white_1000"
+                    app:button_background_color="@color/colorPrimaryLight"/>
+
+                <com.wavecell.sample.app.custom.views.CallButtonView
+                    android:id="@+id/call_hold_cbv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="20dp"
+                    app:button_key="@string/tag_hold"
+                    app:onHold="@{viewModel.isPeerOnHold()}"
+                    app:onActiveCallButtonClick="@{viewModel}"
+                    app:activeCallClickOption="@{ActiveCallClickOption.HOLD}"
+                    app:button_title="Hold"
+                    app:button_icon="@drawable/call_hold"
+                    app:button_icon_color="@color/md_white_1000"
+                    app:button_text_color="@color/md_white_1000"
+                    app:button_background_color="@color/colorPrimaryLight"/>
+
+                <com.wavecell.sample.app.custom.views.CallButtonView
+                    android:id="@+id/call_speaker_cbv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    app:onSpeaker="@{viewModel.onAudioOption}"
+                    app:button_key="@string/tag_speaker"
+                    app:onActiveCallButtonClick="@{viewModel}"
+                    app:activeCallClickOption="@{ActiveCallClickOption.SPEAKER}"
+                    app:button_title="Speaker"
+                    app:button_icon="@drawable/call_speaker"
+                    app:button_icon_color="@color/md_white_1000"
+                    app:button_text_color="@color/md_white_1000"
+                    app:button_background_color="@color/colorPrimaryLight"/>
+            </LinearLayout>
+
+            <com.wavecell.sample.app.custom.views.CallButtonView
+                android:clickable="true"
+                android:focusable="true"
+                android:tag="tag1"
+                android:focusableInTouchMode="true"
+                android:id="@+id/call_end_call_cbv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="32dp"
+                android:layout_marginBottom="32dp"
+                app:button_key="@string/tag_hang_up"
+                app:onActiveCallButtonClick="@{viewModel}"
+                app:activeCallClickOption="@{ActiveCallClickOption.HANG_UP}"
+                app:button_title="End call"
+                app:button_icon="@drawable/call_disconnect"
+                app:button_icon_color="@color/md_white_1000"
+                app:button_text_color="@color/md_white_1000"
+                app:button_background_color="@color/reject_call"/>
+        </LinearLayout>
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+</layout>

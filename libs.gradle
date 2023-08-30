@@ -1,0 +1,33 @@
+// Do not add an empty line before this code block.
+ext.libs = [
+        "sdk": [
+                "maven": [
+                        "sip": "$publishers.sip.group:$publishers.sip.artifact:$publishers.sip.version",
+                        "call": "$publishers.call.group:$publishers.call.artifact:$publishers.call.version",
+                        "logger": "$publishers.logger.group:$publishers.logger.artifact:$publishers.logger.version",
+                        "voice": "$publishers.voice.group:$publishers.voice.artifact:$publishers.voice.version"
+                ],
+                "substitutions": [
+                        "sip-sdk": [
+                                group: publishers.sip.group,
+                                name: publishers.sip.artifact,
+                                version: publishers.sip.version
+                        ],
+                        "call": [
+                                group: publishers.call.group,
+                                name: publishers.call.artifact,
+                                version: publishers.call.version
+                        ],
+                        "logger": [
+                                group: publishers.logger.group,
+                                name: publishers.logger.artifact,
+                                version: publishers.logger.version
+                        ],
+                        "voice-sdk": [
+                                group: publishers.voice.group,
+                                name: publishers.voice.artifact,
+                                version: publishers.voice.version
+                        ]
+                ]
+        ]
+]

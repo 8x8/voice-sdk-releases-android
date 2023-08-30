@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.wavecell.sample.app.presentation.view.activity.ActivityRegister">
+
+    <data>
+        <import type="android.view.View" />
+        <import type="com.wavecell.sample.app.validation.InputValidationType"/>
+
+        <variable
+            name="viewModel"
+            type="com.wavecell.sample.app.presentation.model.ActivityRegisterViewModel" />
+
+        <variable
+            name="navigator"
+            type="com.wavecell.sample.app.presentation.navigator.RegisterNavigator" />
+
+    </data>
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:id="@+id/container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorPrimary">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            android:src="@mipmap/background_image"
+            tools:ignore="ContentDescription" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            tools:ignore="UseCompoundDrawables">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:layout_marginStart="34dp"
+                android:layout_marginEnd="34dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    tools:ignore="UseCompoundDrawables,UselessParent">
+                    <ImageView
+                        android:layout_width="@dimen/logo_size"
+                        android:layout_height="@dimen/logo_size"
+                        android:src="@drawable/logo"
+                        android:focusable="true"
+                        android:clickable="true"
+                        app:onLongClick="@{()->viewModel.onAppInfo()}"
+                        tools:ignore="ContentDescription" />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="32dp"
+                        android:text="@string/slogan"
+                        android:textSize="32sp"
+                        android:textColor="@color/md_white_1000"/>
+
+                </LinearLayout>
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:animateLayoutChanges="true"
+                android:orientation="vertical"
+                android:paddingStart="34dp"
+                android:paddingEnd="34dp"
+                android:paddingTop="32dp"
+                android:paddingBottom="24dp"
+                android:background="@drawable/bottom_sheet_register_background">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/register"
+                    android:textSize="24sp"
+                    android:textColor="@color/md_white_1000"/>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:hint="@string/name"
+                    android:textColorHint="@color/md_white_1000_20"
+                    app:errorTextColor="@color/reject_call"
+                    app:onTextChanged="@{viewModel.userName}"
+                    app:inputValidationType="@{InputValidationType.DISPLAY_NAME}"
+                    app:boxBackgroundColor="@color/colorPrimary"
+                    style="@style/TextInputLayout.Default">
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/register_name_et"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="textCapWords"
+                        android:imeOptions="actionNext"
+                        android:nextFocusForward="@id/register_user_id_et"
+                        android:singleLine="true"
+                        android:text="@={viewModel.userName}"
+                        android:textSize="22sp"
+                        android:textColor="@color/md_white_1000"
+                        android:textColorHint="@color/md_white_1000_20"/>
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/user_id"
+                    android:textColorHint="@color/md_white_1000_20"
+                    app:boxBackgroundColor="@color/colorPrimary"
+                    app:errorTextColor="@color/reject_call"
+                    app:onTextChanged="@{viewModel.userId}"
+                    app:inputValidationType="@{InputValidationType.USER_ID}"
+                    style="@style/TextInputLayout.Default">
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/register_user_id_et"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="text"
+                        android:imeOptions="actionDone"
+                        android:singleLine="true"
+                        android:text="@={viewModel.userId}"
+                        android:textSize="22sp"
+                        android:textColor="@color/md_white_1000"
+                        android:textColorHint="@color/md_white_1000_20"/>
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+                    android:id="@+id/register_select_fab"
+                    android:layout_width="match_parent"
+                    android:layout_height="56dp"
+                    android:layout_marginTop="16dp"
+                    android:text="@string/setup_account"
+                    android:onClick="@{()->navigator.showAccountsBottomSheet()}"
+                    android:textColor="@color/md_white_1000"
+                    android:gravity="center"
+                    app:strokeWidth="2dp"
+                    app:strokeColor="@color/md_white_1000"
+                    app:backgroundTint="@color/colorPrimary"
+                    app:rippleColor="@color/colorPrimaryLight"
+                    style="@style/Widget.MaterialComponents.Button.UnelevatedButton"/>
+
+                <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+                    android:id="@+id/register_sign_up_fab"
+                    android:layout_width="match_parent"
+                    android:layout_height="56dp"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/sign_up"
+                    android:onClick="@{()->viewModel.onRegister()}"
+                    android:textColor="@color/colorPrimary"
+                    android:gravity="center"
+                    app:rippleColor="@color/colorPrimaryLight"
+                    app:backgroundTint="@color/md_white_1000"
+                    app:validateDisplayName="@{viewModel.userName}"
+                    app:validateUserId="@{viewModel.userId}"
+                    app:isRegistering="@{viewModel.isRegistering}"
+                    style="@style/Widget.MaterialComponents.Button.UnelevatedButton"/>
+
+                <ProgressBar
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    app:visibleOrGone="@{viewModel.isRegistering}"
+                    android:layout_gravity="center_horizontal"
+                    android:indeterminateTint="@color/md_white_1000"
+                    android:visibility="gone"
+                    tools:visibility="visible"/>
+            </LinearLayout>
+        </LinearLayout>
+
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+</layout>

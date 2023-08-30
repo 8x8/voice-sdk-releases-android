@@ -1,0 +1,3 @@
+rootProject.name = "WavecellSampleApp"
+
+include ':app'

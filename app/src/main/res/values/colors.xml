@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#29304E</color>
+    <color name="colorPrimaryDark">#242A46</color>
+    <color name="colorPrimaryDarker">#0A101E</color>
+    <color name="colorPrimaryLight">#3A4262</color>
+    <color name="colorAccent">#2473D5</color>
+
+    <color name="colorAccentLight">#C8E5FF</color>
+
+    <color name="blue_highlight">#19D4EE</color>
+    <color name="blue_button">#2473D5</color>
+
+    <color name="orange_button">#FA7268</color>
+
+    <color name="button_grey">#F4F6FC</color>
+
+    <color name="md_white_1000">#FFFFFF</color>
+    <color name="md_white_1000_20">#33FFFFFF</color>
+    <color name="md_white_1000_50">#80FFFFFF</color>
+
+    <color name="md_black_1000">#000000</color>
+    <color name="md_black_1000_20">#33000000</color>
+    <color name="md_black_1000_50">#80000000</color>
+
+    <color name="accept_call">#2ECC71</color>
+    <color name="reject_call">#FA7268</color>
+
+    <color name="dodger_blue">#34a1fb</color>
+    <color name="dark">#1c2025</color>
+
+</resources>

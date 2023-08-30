@@ -1,0 +1,8 @@
+dependencies {
+    //This file should be empty in the released sample app project
+    debugImplementation "com.squareup.leakcanary:leakcanary-android:$versions.leakcanary"
+    debugImplementation "com.facebook.flipper:flipper:$versions.flipper"
+    debugImplementation "com.facebook.soloader:soloader:$versions.soloader"
+    debugImplementation "com.facebook.flipper:flipper-leakcanary2-plugin:$versions.flipper"
+    releaseImplementation "com.facebook.flipper:flipper-noop:$versions.flipper"
+}

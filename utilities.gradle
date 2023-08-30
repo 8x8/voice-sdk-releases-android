@@ -1,0 +1,22 @@
+// Do not add an empty line before this code block.
+ext.updatePublisherVersions = { artifactVersion ->
+    publishers.sip.version = artifactVersion
+    publishers.call.version = artifactVersion
+    publishers.logger.version = artifactVersion
+    publishers.voice.version = artifactVersion
+}
+
+ext.updateAppVersionParts = { appVersion ->
+    def versionParts = appVersion.split('\\.')
+    def versionPartsIterator = versionParts.iterator()
+
+    if (versionPartsIterator.hasNext()) {
+        publishers.sample.major = versionPartsIterator.next()
+    }
+    if (versionPartsIterator.hasNext()) {
+        publishers.sample.minor = versionPartsIterator.next()
+    }
+    if (versionPartsIterator.hasNext()) {
+        publishers.sample.patch = versionPartsIterator.next()
+    }
+}

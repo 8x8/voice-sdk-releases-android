@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.wavecell.sample.app.presentation.view.activity.ActivityCall">
+    <data>
+        <import type="android.view.View" />
+
+        <variable
+            name="viewModel"
+            type="com.wavecell.sample.app.presentation.model.ActivityCallViewModel" />
+    </data>
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="4dp"
+            app:cardElevation="4dp"
+            app:cardCornerRadius="16dp"
+            app:cardBackgroundColor="@color/md_white_1000">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:orientation="horizontal"
+                tools:ignore="UseCompoundDrawables">
+
+                <ImageView
+                    android:id="@+id/incoming_avatar_iv"
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
+                    android:layout_marginEnd="8dp"
+                    android:scaleType="centerCrop"
+                    android:layout_gravity="center_vertical"
+                    android:outlineProvider="background"
+                    android:background="@drawable/circle_avatar"
+                    android:src="@drawable/avatar_batman"
+                    tools:ignore="ContentDescription" />
+
+                <TextView
+                    android:id="@+id/incoming_name_tv"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_gravity="center_vertical"
+                    android:textSize="18sp"
+                    android:textColor="@color/md_black_1000"
+                    android:text="@{viewModel.activeCall.displayName"
+                    tools:text="John Doe"/>
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:id="@+id/incoming_reject_fab"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:fabSize="mini"
+                    app:elevation="2dp"
+                    app:tint="@color/md_white_1000"
+                    app:srcCompat="@drawable/clear"
+                    app:backgroundTint="@color/reject_call" />
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:id="@+id/incoming_accept_fab"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:fabSize="mini"
+                    app:elevation="2dp"
+                    app:tint="@color/md_white_1000"
+                    app:srcCompat="@drawable/call_accept"
+                    app:backgroundTint="@color/accept_call" />
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+    </LinearLayout>
+</layout>

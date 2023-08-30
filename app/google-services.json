@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "862476749710",
+    "firebase_url": "https://wavecellsampleapp.firebaseio.com",
+    "project_id": "wavecellsampleapp",
+    "storage_bucket": "wavecellsampleapp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:862476749710:android:978077db50a89748b472df",
+        "android_client_info": {
+          "package_name": "com.wavecell.sample.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "862476749710-hvdch4lgkv3l1u848bqk7ese6gcmo1i3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC610MJbg8vY2dp0iehc0D3CTehe3WnauU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "862476749710-hvdch4lgkv3l1u848bqk7ese6gcmo1i3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

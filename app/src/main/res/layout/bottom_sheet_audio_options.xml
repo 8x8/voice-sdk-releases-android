@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <import type="android.view.View" />
+
+        <import type="com.eght.voice.sdk.model.VoiceCallAudioOption"/>
+
+        <variable
+            name="viewModel"
+            type="com.wavecell.sample.app.presentation.model.AudioOptionsBottomSheetViewModel" />
+    </data>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:orientation="vertical"
+        android:background="@drawable/bottom_sheet_incoming_call_background">
+        <View
+            android:layout_width="42dp"
+            android:layout_height="4dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="12dp"
+            android:layout_gravity="center_horizontal"
+            android:background="@drawable/draggable_bar"/>
+
+        <TextView
+            android:id="@+id/menu_earpiece_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:text="@string/earpiece"
+            android:tag="@string/earpiece"
+            android:onClick="@{()->viewModel.onAudioSelected(VoiceCallAudioOption.EARPIECE)}"
+            app:onAudioOutput="@{viewModel.onAudioOptionSelected}"
+            app:drawableStartCompat="@drawable/speaker_phone"
+            style="@style/MenuItem.TextView.Default" />
+
+        <TextView
+            android:id="@+id/menu_speaker_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:text="@string/speaker"
+            android:tag="@string/speaker"
+            android:onClick="@{()->viewModel.onAudioSelected(VoiceCallAudioOption.SPEAKER)}"
+            app:onAudioOutput="@{viewModel.onAudioOptionSelected}"
+            app:drawableStartCompat="@drawable/call_speaker"
+            style="@style/MenuItem.TextView.Default" />
+
+        <TextView
+            android:id="@+id/menu_bluetooth_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:text="@string/bluetooth"
+            android:tag="@string/bluetooth"
+            android:onClick="@{()->viewModel.onAudioSelected(VoiceCallAudioOption.BLUETOOTH)}"
+            app:visibleOrGone="@{viewModel.onBluetoothAvailable}"
+            app:onAudioOutput="@{viewModel.onAudioOptionSelected}"
+            app:drawableStartCompat="@drawable/bluetooth"
+            style="@style/MenuItem.TextView.Default" />
+    </LinearLayout>
+</layout>

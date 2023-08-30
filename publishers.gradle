@@ -1,0 +1,58 @@
+// Do not add an empty line before this code block.
+ext {
+    maven = [
+            "repo": [
+                    "url": "https://maven.pkg.github.com/8x8/voice-sdk-releases-android",
+                    "credentials": [
+                            "username": System.getenv("GPR_USERNAME"),
+                            "token": System.getenv("GPR_TOKEN")
+                    ]
+            ]
+    ]
+    publishers = [
+            "logger": [
+                    "group": "com.eght",
+                    "artifact": "logger-sdk-android",
+                    "version": "0.0.5", // <- version
+                    "name": "logger-sdk",
+                    "description": "Android logger components (debug)"
+            ],
+            "call": [
+                    "group": "com.eght",
+                    "artifact": "call-sdk-android",
+                    "version": "0.0.5", // <- version
+                    "name": "call-sdk",
+                    "description": "Android call components (debug)"
+            ],
+            "sip": [
+                    "group": "com.eght",
+                    "artifact": "sip-sdk-android",
+                    "version": "0.0.5", // <- version
+                    "name": "sip-sdk",
+                    "description": "Android Sip SDK components (debug)"
+            ],
+            "voice": [
+                    "group": "com.eght",
+                    "artifact": "voice-sdk-android",
+                    "version": "0.0.5", // <- version
+                    "name": "voice-sdk",
+                    "description": "Voice SDK Android"
+            ],
+            "sample": [
+                    "major": "0",
+                    "minor": "3",
+                    "patch": "1"
+            ]
+    ]
+}
+
+def artifactVersionPropFile = file('artifact.version')
+if (!artifactVersionPropFile.canRead()) {
+    throw new GradleException("Could not read artifact.version!")
+} else {
+    Properties versionProps = new Properties()
+    versionProps.load(new FileInputStream(artifactVersionPropFile))
+
+    def artifactVersion = versionProps['ARTIFACT_VERSION']
+    updatePublisherVersions(artifactVersion)
+}

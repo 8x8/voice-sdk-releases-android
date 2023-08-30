@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.wavecell.sample.app.presentation.view.activity.ActivityIncomingCall">
+
+    <data>
+        <import type="android.view.View" />
+        <import type="com.wavecell.sample.app.presentation.callback.IncomingCallClickOption"/>
+
+        <variable
+            name="viewModel"
+            type="com.wavecell.sample.app.presentation.model.IncomingCallBottomSheetViewModel" />
+    </data>
+
+    <FrameLayout
+        android:id="@+id/call_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#AA000000">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:paddingEnd="34dp"
+            android:paddingStart="34dp"
+            android:orientation="vertical"
+            android:background="@drawable/bottom_sheet_incoming_call_background">
+
+            <TextView
+                android:id="@+id/incoming_call_name_tv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="78dp"
+                android:gravity="center_horizontal"
+                android:text="@{viewModel.call.displayName}"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:textColor="@color/md_black_1000"
+                tools:text="@string/name"/>
+
+            <ImageView
+                android:id="@+id/incoming_call_avatar_iv"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_marginTop="8dp"
+                android:layout_gravity="center_horizontal"
+                android:background="@drawable/avatar_batman"
+                app:avatar="@{viewModel.call.avatarUrl}"
+                tools:ignore="ContentDescription" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:gravity="center_horizontal"
+                android:text="@string/incoming_call_ellipsis"
+                android:textSize="14sp"
+                android:textColor="@color/md_black_1000"/>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="45dp"
+                android:layout_marginBottom="68dp"
+                android:layout_gravity="center_horizontal"
+                android:orientation="horizontal">
+
+                <com.wavecell.sample.app.custom.views.CallButtonView
+                    android:id="@+id/incoming_call_accept_cbv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="32dp"
+                    app:onIncomingCallButtonClick="@{viewModel}"
+                    app:onIncomingCallClickOption="@{IncomingCallClickOption.ACCEPT}"
+                    app:button_key="@string/tag_accept"
+                    app:button_title="Accept"
+                    app:button_icon="@drawable/call_accept"
+                    app:button_icon_color="@color/md_white_1000"
+                    app:button_background_color="@color/accept_call"/>
+
+
+                <com.wavecell.sample.app.custom.views.CallButtonView
+                    android:id="@+id/incoming_call_reject_cbv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="32dp"
+                    app:button_key="@string/tag_reject"
+                    app:onIncomingCallButtonClick="@{viewModel}"
+                    app:onIncomingCallClickOption="@{IncomingCallClickOption.REJECT}"
+                    app:button_title="Reject"
+                    app:button_icon="@drawable/clear"
+                    app:button_icon_color="@color/md_white_1000"
+                    app:button_background_color="@color/reject_call"/>
+            </LinearLayout>
+        </LinearLayout>
+    </FrameLayout>
+</layout>

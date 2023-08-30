@@ -1,0 +1,36 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+buildscript {
+
+    apply from: "dependencies.gradle"
+    apply from: "utilities.gradle"
+    apply from: "publishers.gradle"
+    apply from: "app-version.gradle"
+    apply from: "libs.gradle"
+
+    repositories {
+        google()
+        mavenCentral()
+    }
+    dependencies {
+        classpath "com.android.tools.build:gradle:$versions.gradle"
+        classpath 'com.google.android.gms:oss-licenses-plugin:0.10.6'
+
+        classpath "org.jetbrains.kotlin:kotlin-allopen:$versions.kotlin"
+        classpath "com.google.gms:google-services:$versions.google.services"
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$versions.kotlin"
+        classpath "com.google.firebase:firebase-appdistribution-gradle:$versions.google.firebase.appdistribution"
+    }
+}
+
+allprojects {
+    repositories {
+        google()
+        mavenCentral()
+        maven { url "https://maven.pkg.github.com/8x8/voice-sdk-releases-android" }
+        mavenLocal()
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}

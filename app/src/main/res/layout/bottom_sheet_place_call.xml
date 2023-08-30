@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.wavecell.sample.app.presentation.view.activity.ActivityMain">
+
+    <data>
+        <import type="android.view.View" />
+
+        <variable
+            name="viewModel"
+            type="com.wavecell.sample.app.presentation.model.PlaceCallBottomSheetViewModel" />
+    </data>
+    <FrameLayout
+        android:id="@+id/call_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bottom_sheet_call_background">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="34dp"
+            android:layout_marginStart="34dp"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="44dp"
+                android:layout_marginBottom="24dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                tools:ignore="UseCompoundDrawables">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/call"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/md_white_1000"/>
+
+                <ImageView
+                    android:id="@+id/call_close_iv"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/clear"
+                    android:onClick="@{()->viewModel.onClose()}"
+                    tools:ignore="ContentDescription" />
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/caller_id"
+                android:textSize="14sp"
+                android:textColor="@color/md_white_1000"/>
+
+            <EditText
+                android:id="@+id/call_callee_id_et"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/caller_id_hint"
+                android:imeOptions="actionDone"
+                android:singleLine="true"
+                android:text="@={viewModel.calleeIdText}"
+                android:textSize="22sp"
+                android:textColor="@color/md_white_1000"
+                android:textColorHint="@color/md_white_1000_20"
+                android:backgroundTint="@color/md_white_1000_50"
+                app:shouldRequestFocus="@{viewModel.onRequestFocus}"
+                tools:ignore="Autofill,LabelFor,TextFields" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="@string/account_id"
+                android:textSize="14sp"
+                android:textColor="@color/md_white_1000"/>
+
+            <EditText
+                android:id="@+id/call_account_id_et"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:imeOptions="actionDone"
+                android:singleLine="true"
+                android:text="@={viewModel.accountIdText}"
+                android:textSize="22sp"
+                android:textColor="@color/md_white_1000"
+                android:textColorHint="@color/md_white_1000_20"
+                android:backgroundTint="@color/md_white_1000_50" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/call_place_call_mb"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="34dp"
+                android:text="@string/place_a_call"
+                android:onClick="@{() -> viewModel.makeCall()}"
+                app:validateUserId="@{viewModel.calleeIdText}"
+                app:backgroundTint="@color/colorAccent"/>
+        </LinearLayout>
+    </FrameLayout>
+</layout>

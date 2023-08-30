@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="CallButtonView">
+        <attr name="button_title" format="string"/>
+        <attr name="button_icon" format="integer"/>
+        <attr name="button_icon_color" format="color"/>
+        <attr name="button_text_color" format="color"/>
+        <attr name="button_background_color" format="color"/>
+        <attr name="button_key" format="string"/>
+    </declare-styleable>
+</resources>

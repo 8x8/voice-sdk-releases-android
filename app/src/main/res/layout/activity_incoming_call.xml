@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.wavecell.sample.app.presentation.view.activity.ActivityMain">
+
+    <data>
+        <import type="android.view.View" />
+
+        <variable
+            name="viewModel"
+            type="com.wavecell.sample.app.presentation.model.ActivityIncomingCallViewModel" />
+
+
+        <variable
+            name="incomingCallBottomSheetVieWModel"
+            type="com.wavecell.sample.app.presentation.model.IncomingCallBottomSheetViewModel" />
+    </data>
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorPrimary">
+
+        <ImageView
+            android:layout_width="637dp"
+            android:layout_height="292dp"
+            android:layout_marginTop="139dp"
+            android:layout_marginStart="90dp"
+            android:src="@drawable/eght"
+            app:tint="@color/colorPrimaryDark"
+            tools:ignore="ContentDescription" />
+
+        <ImageView
+            android:layout_width="136dp"
+            android:layout_height="334dp"
+            android:layout_marginTop="92dp"
+            android:layout_marginEnd="34dp"
+            android:layout_gravity="end"
+            android:src="@mipmap/walkie_talkie"
+            tools:ignore="ContentDescription" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginEnd="34dp"
+            android:layout_marginStart="34dp"
+            android:orientation="vertical">
+            <ImageView
+                android:layout_width="@dimen/logo_size"
+                android:layout_height="@dimen/logo_size"
+                android:layout_marginTop="82dp"
+                android:src="@drawable/logo"
+                tools:ignore="ContentDescription" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="72dp"
+                android:text="@string/good_morning"
+                android:textSize="24sp"
+                android:textColor="@color/md_white_1000"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:maxLines="2"
+                android:ellipsize="end"
+                android:text="@{viewModel.displayName}"
+                android:textSize="48sp"
+                android:textColor="@color/md_white_1000"/>
+            <TextView
+                android:id="@+id/user_id_tv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="@{viewModel.userId}"
+                android:textSize="13sp"
+                android:textColor="@color/blue_highlight"/>
+        </LinearLayout>
+
+        <include layout="@layout/bottom_sheet_incoming_call"
+            app:viewModel="@{incomingCallBottomSheetVieWModel}"
+            android:visibility="visible"/>
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+</layout>

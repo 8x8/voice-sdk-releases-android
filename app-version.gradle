@@ -1,0 +1,8 @@
+def appVersionPropFile = file('app.version')
+if (appVersionPropFile.canRead()) {
+    Properties versionProps = new Properties()
+    versionProps.load(new FileInputStream(appVersionPropFile))
+
+    def appVersion = versionProps['APP_VERSION']
+    updateAppVersionParts(appVersion)
+}

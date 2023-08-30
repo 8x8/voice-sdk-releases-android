@@ -1,0 +1,101 @@
+<resources>
+    <string name="app_name">Wavecell Sample App</string>
+    <string name="recent_calls">Recent Calls</string>
+    <string name="caller_id">Callee ID</string>
+    <string name="account_id">Account ID (Optional)</string>
+    <string name="missing_account_data">Missing account data</string>
+    <string name="caller_id_hint">For ex. Greg680</string>
+    <string name="account_id_hint">For ex. Voice_sdk</string>
+    <string name="call">Call</string>
+    <string name="place_a_call">Place a call</string>
+    <string name="place_call_failure">Placing a call failed</string>
+    <string name="calling_self_error">Calling yourself is not allowed</string>
+    <string name="slogan">Make simple app to app calls</string>
+    <string name="register">Register</string>
+    <string name="name">Name</string>
+    <string name="account_id_info">Account ID</string>
+    <string name="account_name">Account name</string>
+    <string name="service_url">Service URL</string>
+    <string name="token_url">Token URL</string>
+    <string name="apply">Apply</string>
+    <string name="account_details">Account Details</string>
+    <string name="user_id">User ID</string>
+    <string name="sign_up">   Sign up</string>
+    <string name="incoming_call_ellipsis">Incoming call…</string>
+    <string name="john_doe">John Doe</string>
+    <string name="good_morning">Good morning</string>
+    <string name="call_connected">Call connected</string>
+    <string name="profile">Profile</string>
+    <string name="unregister">Unregister</string>
+    <string name="settings">Settings</string>
+    <string name="change">Change</string>
+    <string name="user_id_sample">Serg012</string>
+    <string name="save">Save</string>
+    <string name="cancel">Cancel</string>
+    <string name="update_ringtone">Update ringtone</string>
+    <string name="update_user_name">Update user name</string>
+    <string name="update_phone_number">Update phone number</string>
+    <string name="update_inbound_call_path">Update inbound call path</string>
+
+    <string name="default_name">John Doe</string>
+
+    <string name="bluetooth">Bluetooth</string>
+    <string name="earpiece">Earpiece</string>
+    <string name="speaker">Speaker</string>
+
+    <string name="on_hold">On Hold</string>
+    <string name="hold">Hold</string>
+    <string name="mute">Mute</string>
+    <string name="muted">Muted</string>
+
+    <string name="tag_hang_up">Tag Hang Up</string>
+    <string name="tag_mute">Tag Mute</string>
+    <string name="tag_hold">Tag Hold</string>
+    <string name="tag_speaker">Tag Speaker</string>
+    <string name="tag_accept">Tag Accept</string>
+    <string name="tag_reject">Tag Reject</string>
+
+    <string name="connecting_ellipsis">Connecting…</string>
+    <string name="answer">Answer</string>
+    <string name="reject">Reject</string>
+    <string name="incoming_call">Incoming call</string>
+    <string name="ongoing_call">Ongoing Call</string>
+    <string name="hang_up">Hang up</string>
+    <string name="android_dialing">Calling…</string>
+    <string name="android_calls_touch_to_return_to_call">Tap to return to call</string>
+
+    <string name="channel_name_background_processing">Background processing</string>
+    <string name="channel_description_background_processing">Background processing</string>
+
+    <string name="channel_name_incoming_call">Incoming call</string>
+    <string name="channel_name_ongoing_call">Ongoing call</string>
+    <string name="setup_account">Setup Account</string>
+
+    <string name="no_account_selected">Please set account details.</string>
+    <string name="registration_failed">Registration failed</string>
+    <string name="endpoint_created_incorrectly">Endpoint not created correctly.</string>
+    <string name="set_user_id_to_proceed">Please provide a user id to proceed</string>
+    <string name="set_user_name_to_proceed">Please provide a username to proceed</string>
+
+    <string name="user_name_cannot_be_empty">Please provide a user name to proceed.</string>
+    <string name="share_logs">Share Logs</string>
+    <string name="call_failed">Call Failed</string>
+    <string name="user_name_saved">Your name has been saved</string>
+    <string name="user_name_failed">Unable to update name</string>
+    <string name="phone_number_saved">Your phone number has been saved</string>
+    <string name="phone_number_failed">Unable to update phone number</string>
+    <string name="ringtone_saved">Your ringtone has been saved</string>
+    <string name="inbound_call_path_saved">"Inbound call path has been saved</string>
+    <string name="inbound_call_path_failed">Unable to update inbound call path</string>
+    <string name="phone_state_permission_required">Phone state permission is required</string>
+    <string name="phone_numbers_permission_required">Phone numbers permission is required</string>
+    <string name="audio_permission_required">Record audio permissions are required</string>
+
+    <string name="invalid_token">Invalid token. Refresh in progress</string>
+    <string name="token_refresh_failed">Token refresh failed</string>
+    <string name="token_update_failed">Token update failed</string>
+    <string name="token_update_success">Token updated successfully on SDK</string>
+    <string name="push_token_update_success">Push token updated successfully on the SDK</string>
+    <string name="push_token_update_failed">Push token update failed</string>
+    <string name="open_source_licenses">Open Source Licenses</string>
+</resources>

@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="viewModel"
+            type="com.wavecell.sample.app.presentation.model.ActivityMainViewModel" />
+
+        <variable
+            name="navigator"
+            type="com.wavecell.sample.app.presentation.navigator.Navigator" />
+    </data>
+
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:focusable="true"
+        android:clickable="true"
+        android:onClick="@{()->navigator.startCallActivity()}"
+        android:background="@drawable/ripple_light_mode_selected"
+        android:gravity="center_vertical">
+
+        <ImageView
+            android:id="@+id/avatar"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginBottom="16dp"
+            android:outlineProvider="background"
+            android:src="@drawable/avatar_batman"
+            android:background="@drawable/circle_avatar"
+            tools:ignore="ContentDescription" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:orientation="vertical">
+            <TextView
+                android:id="@+id/row_recent_call_name_tv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="14sp"
+                android:textColor="@color/md_black_1000"
+                android:text="@{viewModel.ongoingCall.displayName}"
+                tools:text="John Doe"/>
+            <Chronometer
+                android:id="@+id/row_recent_call_duration_tv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="12sp"
+                android:textColor="@color/md_black_1000"
+                android:alpha=".60"
+                app:chrono="@{viewModel.ongoingCall.callStartTime}"
+                tools:text="02:12"/>
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/row_recent_call_date_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:textColor="@color/colorAccent"
+            android:text="@string/ongoing_call"/>
+
+    </LinearLayout>
+</layout>

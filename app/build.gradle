@@ -1,0 +1,146 @@
+apply plugin: "com.android.application"
+apply plugin: "kotlin-android"
+apply plugin: "kotlin-kapt"
+apply plugin: 'com.google.firebase.appdistribution'
+apply plugin: 'com.google.android.gms.oss-licenses-plugin'
+
+if (!rootProject.hasProperty("standaloneSampleApp")) {
+    apply from: "debug-dependancies.gradle"
+}
+
+def _versionName = "${publishers.sample.major}.${publishers.sample.minor}.${publishers.sample.patch}"
+def _versionCode = Integer.parseInt(publishers.sample.major) * 10000 +
+        Integer.parseInt(publishers.sample.minor) * 100 +
+        Integer.parseInt(publishers.sample.patch)
+
+if (rootProject.hasProperty("hyperloopArtifactVersion")) {
+    def shaPattern = ~"-([a-f0-9]{8})-"
+    def jiraPattern = ~"-(VOMB-[0-9]+)-"
+
+    def shaMatcher = rootProject.hyperloopArtifactVersion =~ shaPattern
+    def jiraMatcher = rootProject.hyperloopArtifactVersion =~ jiraPattern
+
+    if (shaMatcher.find()) {
+        _versionName += "-${shaMatcher.group(1)}"
+    } else if (jiraMatcher.find()) {
+        _versionName += "-${jiraMatcher.group(1)}"
+    }
+}
+
+android {
+    compileSdkVersion versions.compileSdk
+
+    defaultConfig {
+        applicationId "com.wavecell.sample.app"
+        minSdkVersion versions.minSdk
+        targetSdkVersion versions.targetSdk
+        versionCode _versionCode
+        versionName _versionName
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    signingConfigs {
+        release {
+            def _storeFile = 'release.keystore'
+            def _storePassword = System.getenv("KEYSTORE_PASSWORD")
+            def _keyAlias = System.getenv("KEY_ALIAS")
+            def _keyPassword = System.getenv("KEY_PASSWORD")
+
+            storeFile file(_storeFile)
+            storePassword _storePassword
+            keyAlias _keyAlias
+            keyPassword _keyPassword
+
+            firebaseAppDistribution {
+                groups = "wavecell-qa"
+                artifactType = "APK"
+                serviceCredentialsFile = System.getenv("GOOGLE_APPLICATION_CREDENTIALS")
+                releaseNotesFile = "$projectDir/release-notes.txt"
+            }
+        }
+    }
+
+    buildTypes {
+        debug {
+            testCoverageEnabled true
+        }
+        release {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro"
+            signingConfig signingConfigs.release
+        }
+    }
+
+    buildFeatures {
+        dataBinding = true
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+    namespace 'com.wavecell.sample.app'
+}
+
+dependencies {
+    implementation fileTree(dir: "libs", include: ["*.jar"])
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$versions.kotlin"
+    implementation "androidx.appcompat:appcompat:$versions.androidx.appcompat"
+    implementation "androidx.core:core-ktx:$versions.androidx.ktx.core"
+    implementation "androidx.constraintlayout:constraintlayout:$versions.androidx.constraints"
+    implementation "androidx.fragment:fragment-ktx:$versions.androidx.ktx.fragment"
+    implementation "androidx.lifecycle:lifecycle-common-java8:$versions.androidx.lifecycle.java8"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$versions.androidx.ktx.viewmodel"
+    implementation "androidx.lifecycle:lifecycle-extensions:$versions.androidx.lifecycle.extensions"
+
+    testImplementation "junit:junit:$versions.test.junit"
+    testImplementation "pl.pragmatists:JUnitParams:$versions.test.junit_params"
+    androidTestImplementation "androidx.test.ext:junit:$versions.androidx.test.junit"
+    androidTestImplementation "androidx.test.espresso:espresso-core:$versions.androidx.test.espresso"
+
+    /* Material Design */
+    implementation "com.google.android.material:material:$versions.google.material"
+
+    /* Dagger */
+    implementation "com.google.dagger:dagger:$versions.dagger"
+    kapt "com.google.dagger:dagger-compiler:$versions.dagger"
+    compileOnly group: "javax.inject", name: "javax.inject", version: "1"
+
+    /* Firebase */
+    implementation "com.google.firebase:firebase-core:$versions.google.firebase.core"
+    implementation "com.google.firebase:firebase-messaging:$versions.google.firebase.messaging"
+
+    /* Coroutines */
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$versions.coroutines.core"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$versions.coroutines.android"
+
+    /* Glide */
+    implementation "com.github.bumptech.glide:glide:$versions.glide"
+    kapt "com.github.bumptech.glide:compiler:$versions.glide"
+
+    /* Retrofit, OkHttp, Logging, Rx Adapter */
+    implementation "com.squareup.retrofit2:retrofit:$versions.square.retrofit2.retrofit"
+    implementation "com.squareup.retrofit2:converter-gson:$versions.square.retrofit2.retrofit"
+    implementation "com.squareup.okhttp3:logging-interceptor:$versions.square.okhttp3.logging"
+
+    /*Worker*/
+    implementation "androidx.work:work-runtime-ktx:$versions.androidx.work"
+
+    /*JWT decoding*/
+    implementation "com.auth0.android:jwtdecode:$versions.jwtDecode"
+
+    /* OSS Licenses Info */
+    implementation "com.google.android.gms:play-services-oss-licenses:$versions.google.oss"
+
+    /* Wavecell SDK */
+    if (rootProject.hasProperty("localArtifactVersion") || rootProject.hasProperty("standaloneSampleApp")) {
+        implementation libs.sdk.maven.voice
+    } else {
+        implementation libs.sdk.project.voice
+    }
+}
+apply plugin: "com.google.gms.google-services"
